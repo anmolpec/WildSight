@@ -34,7 +34,8 @@ ALLOWED_HOSTS = [
     '192.168.1.1',
     '192.168.1.9',
     '192.168.18.22',
-    '072c54faba0f.ngrok.io'
+    '072c54faba0f.ngrok.io',
+    'wildsight.pythonanywhere.com'
     ]
 
 
