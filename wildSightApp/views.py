@@ -172,10 +172,11 @@ class GetUserSightings(generics.ListAPIView):
     def get_queryset(self):
         user=self.request.user
         queryset=Raw_Sighting.objects.filter(user = user)
-        num=self.request.query_params.get('num')
-        if num is not None:
-            return queryset.order_by('date_time').reverse()[0:int(num)]
-        return queryset
+        num=self.request.query_params.get('num') or 10
+        num = int(num)
+        skip = self.request.query_params.get('skip') or 0
+        skip = int(skip)
+        return queryset.order_by('date_time').reverse()[skip*num:(skip+1)*num]
 
 class UserProfileAPI(generics.RetrieveUpdateAPIView):
     serializer_class = UserSerializer
